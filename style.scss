@@ -1,0 +1,46 @@
+@import url('https://fonts.googleapis.com/css?family=Lato');
+
+/* variables */
+$fair: #f9f9f9;
+$veryfair: #ffffff;
+
+$fairtext: #dddddd;
+
+/* native */
+html, body, ul, ol {
+    margin: 0;
+    padding: 0;
+}
+
+
+/* preloader */
+.preloader {
+    top: 0;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: 10000;
+}
+
+/* page */
+body {
+    background: $fair;
+    font-family: Lato;
+    
+    header, section, center {
+        float: left;
+        width: 100%;
+    }
+    
+    header {
+        text-align: center;
+    }
+    
+    section {
+        
+    }
+    
+    footer {
+        text-align: center;
+    }
+}
