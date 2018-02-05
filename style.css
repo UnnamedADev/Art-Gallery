@@ -1,9 +1,33 @@
 @import url("https://fonts.googleapis.com/css?family=Lato");
 /* variables */
+/* mixins etc */
+h1 {
+  text-transform: uppercase;
+  font-variant: small-caps;
+  color: #cccccc; }
+
+h2 {
+  text-transform: capitalize;
+  font-variant: normal;
+  color: #d9d9d9; }
+
 /* native */
 html, body, ul, ol {
   margin: 0;
   padding: 0; }
+
+h1 {
+  -webkit-text-shadow: 1px 1px 5px #888;
+  -moz-text-shadow: 1px 1px 5px #888;
+  text-shadow: 1px 1px 5px #888; }
+
+h2 {
+  -webkit-text-shadow: 1px 1px 5px #888;
+  -moz-text-shadow: 1px 1px 5px #888;
+  text-shadow: 1px 1px 5px #888; }
+
+* {
+  box-sizing: border-box; }
 
 /* preloader */
 .preloader {
@@ -15,14 +39,36 @@ html, body, ul, ol {
 
 /* page */
 body {
-  background: #f9f9f9;
-  font-family: Lato; }
-  body header, body section, body center {
+  background: #ffffff;
+  font-family: Lato;
+  color: #cccccc;
+  text-transform: lowercase;
+  font-variant: small-caps;
+  letter-spacing: 0.1em; }
+  body header, body section, body footer {
     float: left;
-    width: 100%; }
+    width: 100%;
+    border-bottom: 2px solid #f9f9f9; }
   body header {
+    padding: 40px;
     text-align: center; }
+    body header h1 {
+      font-size: 3em; }
+    body header h2 {
+      font-size: 2em; }
+  body section {
+    padding: 40px auto; }
+    body section .painting {
+      display: block;
+      margin: 100px auto 500px auto;
+      position: relative;
+      max-width: 30%;
+      padding: 0;
+      -webkit-box-shadow: 4px 4px 20px 0px #888;
+      -moz-box-shadow: 4px 4px 20px 0px #888;
+      box-shadow: 4px 4px 20px 0px #888; }
   body footer {
+    padding: 40px;
     text-align: center; }
 
 /*# sourceMappingURL=style.css.map */

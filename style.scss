@@ -4,7 +4,43 @@
 $fair: #f9f9f9;
 $veryfair: #ffffff;
 
-$fairtext: #dddddd;
+$fairtext: #cccccc;
+$veryfairtext: #d9d9d9;
+
+$darkshadow: #000;
+$mediumshadow: #888;
+/* mixins etc */
+@mixin box-shadow($top, $left, $blur, $size, $color) {
+
+    -webkit-box-shadow: $top $left $blur $size $color;
+    -moz-box-shadow: $top $left $blur $size $color;
+    box-shadow: $top $left $blur $size $color;
+}
+
+@mixin text-shadow($top, $left, $blur, $color) {
+
+    -webkit-text-shadow: $top $left $blur $color;
+    -moz-text-shadow: $top $left $blur $color;
+    text-shadow: $top $left $blur $color;
+}
+
+@mixin border-radius($radius){
+    border-radius: $radius;
+    -ms-border-radius: $radius;
+    -moz-border-radius: $radius;
+    -webkit-border-radius: $radius;
+}
+
+%title {
+    text-transform: uppercase;
+    font-variant: small-caps;
+    color: $fairtext;
+}
+%subtitle {
+    text-transform:capitalize;
+    font-variant: normal;
+    color: $veryfairtext;
+}
 
 /* native */
 html, body, ul, ol {
@@ -12,7 +48,17 @@ html, body, ul, ol {
     padding: 0;
 }
 
-
+h1 {
+    @extend %title;
+    @include text-shadow(1px, 1px, 5px, $mediumshadow);
+}
+h2 {
+    @extend %subtitle;
+    @include text-shadow(1px, 1px, 5px, $mediumshadow);
+}
+* {
+    box-sizing: border-box;
+}
 /* preloader */
 .preloader {
     top: 0;
@@ -24,23 +70,48 @@ html, body, ul, ol {
 
 /* page */
 body {
-    background: $fair;
+    background: $veryfair;
     font-family: Lato;
+    color: $fairtext;
+    text-transform: lowercase;
+    font-variant: small-caps;
+    letter-spacing: 0.1em;
     
-    header, section, center {
+    header, section, footer {
         float: left;
         width: 100%;
-    }
-    
-    header {
-        text-align: center;
-    }
-    
-    section {
+        border-bottom: 2px solid $fair;    
         
     }
     
+    header {
+        padding: 40px;
+        text-align: center;
+        
+        h1 {
+            font-size: 3em;
+        }
+        h2 {
+            font-size: 2em;
+        }
+    }
+    
+    section {
+        padding: 40px auto;
+        
+        .painting {
+            display: block;
+            margin: 100px auto 500px auto;
+            position: relative;
+            max-width: 30%;
+            padding: 0;
+            @include box-shadow(4px, 4px, 20px, 0px, $mediumshadow);
+            
+        }
+    }
+    
     footer {
+        padding: 40px;
         text-align: center;
     }
 }
