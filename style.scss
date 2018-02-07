@@ -37,8 +37,8 @@ $mediumshadow: #888;
     color: $fairtext;
 }
 %subtitle {
-    text-transform:capitalize;
-    font-variant: normal;
+    text-transform: lowercase;
+    font-variant: small-caps;
     color: $veryfairtext;
 }
 
@@ -50,11 +50,15 @@ html, body, ul, ol {
 
 h1 {
     @extend %title;
-    @include text-shadow(1px, 1px, 5px, $mediumshadow);
+    &:before {
+        content: ",, ";
+    }
+    &:after {
+        content: " ''";
+    }
 }
 h2 {
     @extend %subtitle;
-    @include text-shadow(1px, 1px, 5px, $mediumshadow);
 }
 * {
     box-sizing: border-box;
@@ -67,9 +71,42 @@ h2 {
     position: fixed;
     z-index: 10000;
 }
-
+/* preview */
+.preview {
+    top: -100%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: 10000;
+    text-align: center;
+    background: $fair;
+    vertical-align: bottom;
+    
+    div {
+        width: 100%;
+        height: 100%;
+        position: relative;
+        resize: vertical;
+        
+        img {
+            z-index: 11000;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            resize: vertical;
+            
+            max-height: 98%;
+            max-width: 98%;
+            @include box-shadow(4px, 4px, 20px, 0px, $darkshadow);
+        }
+    }
+    
+}
 /* page */
 body {
+    
     background: $veryfair;
     font-family: Lato;
     color: $fairtext;
@@ -94,19 +131,42 @@ body {
         h2 {
             font-size: 2em;
         }
+        h1, h2{
+            animation: titlePulse infinite 2s alternate;
+        }
+        @keyframes titlePulse {
+            from {
+                opacity: 1;
+            }
+            to {
+                opacity: 0.4
+            }
+        }
     }
     
     section {
         padding: 40px auto;
         
-        .painting {
-            display: block;
-            margin: 100px auto 500px auto;
-            position: relative;
-            max-width: 30%;
-            padding: 0;
-            @include box-shadow(4px, 4px, 20px, 0px, $mediumshadow);
-            
+        .tile {
+            >div {
+                max-width: 30%;
+                margin: 200px auto 200px auto;
+
+                .painting {
+                    display: block;
+                    position: relative;
+                    max-width: 100%;
+                    padding: 0;
+                    @include box-shadow(4px, 4px, 20px, 0px, $darkshadow);
+                    transition: 0.5s ease;
+                    &:hover {
+                        @include box-shadow(4px, 4px, 30px, 0px, $darkshadow);
+                        filter: grayscale(0);
+                        transform: scale(1.05,1.05);
+                    }
+                }
+
+            }
         }
     }
     

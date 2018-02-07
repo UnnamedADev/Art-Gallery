@@ -7,8 +7,8 @@ h1 {
   color: #cccccc; }
 
 h2 {
-  text-transform: capitalize;
-  font-variant: normal;
+  text-transform: lowercase;
+  font-variant: small-caps;
   color: #d9d9d9; }
 
 /* native */
@@ -16,15 +16,10 @@ html, body, ul, ol {
   margin: 0;
   padding: 0; }
 
-h1 {
-  -webkit-text-shadow: 1px 1px 5px #888;
-  -moz-text-shadow: 1px 1px 5px #888;
-  text-shadow: 1px 1px 5px #888; }
-
-h2 {
-  -webkit-text-shadow: 1px 1px 5px #888;
-  -moz-text-shadow: 1px 1px 5px #888;
-  text-shadow: 1px 1px 5px #888; }
+h1:before {
+  content: ",, "; }
+h1:after {
+  content: " ''"; }
 
 * {
   box-sizing: border-box; }
@@ -36,6 +31,35 @@ h2 {
   height: 100%;
   position: fixed;
   z-index: 10000; }
+
+/* preview */
+.preview {
+  top: -100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  z-index: 10000;
+  text-align: center;
+  background: #f9f9f9;
+  vertical-align: bottom; }
+  .preview div {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    resize: vertical; }
+    .preview div img {
+      z-index: 11000;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      resize: vertical;
+      max-height: 98%;
+      max-width: 98%;
+      -webkit-box-shadow: 4px 4px 20px 0px #000;
+      -moz-box-shadow: 4px 4px 20px 0px #000;
+      box-shadow: 4px 4px 20px 0px #000; }
 
 /* page */
 body {
@@ -56,17 +80,33 @@ body {
       font-size: 3em; }
     body header h2 {
       font-size: 2em; }
+    body header h1, body header h2 {
+      animation: titlePulse infinite 2s alternate; }
+@keyframes titlePulse {
+  from {
+    opacity: 1; }
+  to {
+    opacity: 0.4; } }
   body section {
     padding: 40px auto; }
-    body section .painting {
-      display: block;
-      margin: 100px auto 500px auto;
-      position: relative;
+    body section .tile > div {
       max-width: 30%;
-      padding: 0;
-      -webkit-box-shadow: 4px 4px 20px 0px #888;
-      -moz-box-shadow: 4px 4px 20px 0px #888;
-      box-shadow: 4px 4px 20px 0px #888; }
+      margin: 200px auto 200px auto; }
+      body section .tile > div .painting {
+        display: block;
+        position: relative;
+        max-width: 100%;
+        padding: 0;
+        -webkit-box-shadow: 4px 4px 20px 0px #000;
+        -moz-box-shadow: 4px 4px 20px 0px #000;
+        box-shadow: 4px 4px 20px 0px #000;
+        transition: 0.5s ease; }
+        body section .tile > div .painting:hover {
+          -webkit-box-shadow: 4px 4px 30px 0px #000;
+          -moz-box-shadow: 4px 4px 30px 0px #000;
+          box-shadow: 4px 4px 30px 0px #000;
+          filter: grayscale(0);
+          transform: scale(1.05, 1.05); }
   body footer {
     padding: 40px;
     text-align: center; }
