@@ -3,13 +3,15 @@
 $(document).ready(function(){
     
     //const
-    const anmDuration = 500;
+    const anmDuration = 400;
     const plsDuration = 1000;
+    const scrllDuration = 1000;
     //vars
     
     //main
     paintingsEvents();
     closeEvent();
+    scrollTopEvent();
     
     //functions
     function paintingsEvents(){
@@ -20,9 +22,13 @@ $(document).ready(function(){
                 var myHref = $(this).attr("src");
                 
                 $(".preview img").attr("src", myHref);
+                
                 $(".preview").animate({
                     top: 0
-                },anmDuration,"swing");
+                },anmDuration,"swing",function(){
+                    console.log("xd");
+                    $(".preview img").fadeIn(anmDuration/2);
+                });
             });
 
         });
@@ -35,12 +41,21 @@ $(document).ready(function(){
             var trgt = $(event.target)[0];
             
             if(myPic != trgt){
-                $(this).animate({
-                    top: "-100%"
-                },anmDuration,"swing");
+                $(".preview img").fadeOut(anmDuration/2, function(){
+                    $(".preview").animate({
+                        top: "-100%"
+                    },anmDuration,"swing");
+                });
             }
             
         });
     }
     
+    function scrollTopEvent(){
+        $(".scrollBack").click(function(){
+            $("html").animate({
+                scrollTop: 0
+            },scrllDuration,"swing");
+        });
+    }
 });

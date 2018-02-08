@@ -1,7 +1,8 @@
+@charset "UTF-8";
 @import url("https://fonts.googleapis.com/css?family=Lato");
 /* variables */
 /* mixins etc */
-h1 {
+h1, button {
   text-transform: uppercase;
   font-variant: small-caps;
   color: #cccccc; }
@@ -17,9 +18,22 @@ html, body, ul, ol {
   padding: 0; }
 
 h1:before {
-  content: ",, "; }
+  content: "„ "; }
 h1:after {
-  content: " ''"; }
+  content: " ”"; }
+
+button {
+  background: none;
+  border: 2px solid #cccccc;
+  font-weight: bolder;
+  padding: 5px 30px;
+  font-size: 1.5em;
+  transition: 0.3s ease; }
+  button:hover {
+    background: #cccccc;
+    color: #ffffff; }
+  button:focus {
+    outline: none; }
 
 * {
   box-sizing: border-box; }
@@ -55,6 +69,7 @@ h1:after {
       left: 50%;
       transform: translate(-50%, -50%);
       resize: vertical;
+      display: none;
       max-height: 98%;
       max-width: 98%;
       -webkit-box-shadow: 4px 4px 20px 0px #000;
@@ -89,22 +104,29 @@ body {
     opacity: 0.4; } }
   body section {
     padding: 40px auto; }
+    body section .tile h1 {
+      text-align: center;
+      background: #eeeeee;
+      color: #ffffff;
+      width: 100%;
+      padding: 10px 0;
+      margin-top: 200px; }
     body section .tile > div {
       max-width: 30%;
-      margin: 200px auto 200px auto; }
+      margin: 40px auto 200px auto; }
       body section .tile > div .painting {
         display: block;
         position: relative;
         max-width: 100%;
         padding: 0;
-        -webkit-box-shadow: 4px 4px 20px 0px #000;
-        -moz-box-shadow: 4px 4px 20px 0px #000;
-        box-shadow: 4px 4px 20px 0px #000;
+        -webkit-box-shadow: 4px 4px 20px 0px #888;
+        -moz-box-shadow: 4px 4px 20px 0px #888;
+        box-shadow: 4px 4px 20px 0px #888;
         transition: 0.5s ease; }
         body section .tile > div .painting:hover {
-          -webkit-box-shadow: 4px 4px 30px 0px #000;
-          -moz-box-shadow: 4px 4px 30px 0px #000;
-          box-shadow: 4px 4px 30px 0px #000;
+          -webkit-box-shadow: 4px 4px 30px 0px #888;
+          -moz-box-shadow: 4px 4px 30px 0px #888;
+          box-shadow: 4px 4px 30px 0px #888;
           filter: grayscale(0);
           transform: scale(1.05, 1.05); }
   body footer {

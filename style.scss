@@ -1,11 +1,13 @@
 @import url('https://fonts.googleapis.com/css?family=Lato');
 
 /* variables */
+$notfair: #eeeeee;
 $fair: #f9f9f9;
 $veryfair: #ffffff;
 
 $fairtext: #cccccc;
 $veryfairtext: #d9d9d9;
+$extrafairtext: #ffffff;
 
 $darkshadow: #000;
 $mediumshadow: #888;
@@ -51,14 +53,30 @@ html, body, ul, ol {
 h1 {
     @extend %title;
     &:before {
-        content: ",, ";
+        content: "„ ";
     }
     &:after {
-        content: " ''";
+        content: " ”";
     }
 }
 h2 {
     @extend %subtitle;
+}
+button {
+    @extend %title;
+    background: none;
+    border: 2px solid $fairtext;
+    font-weight: bolder;
+    padding: 5px 30px;
+    font-size: 1.5em;
+    transition: 0.3s ease;
+    &:hover {
+        background: $fairtext;
+        color: $veryfair;
+    }
+    &:focus {
+        outline: none;
+    }
 }
 * {
     box-sizing: border-box;
@@ -96,7 +114,7 @@ h2 {
             left: 50%;
             transform: translate(-50%, -50%);
             resize: vertical;
-            
+            display: none;
             max-height: 98%;
             max-width: 98%;
             @include box-shadow(4px, 4px, 20px, 0px, $darkshadow);
@@ -148,19 +166,27 @@ body {
         padding: 40px auto;
         
         .tile {
+            h1 {
+                    text-align: center;
+                    background: $notfair;
+                    color: $extrafairtext;
+                    width: 100%;
+                    padding: 10px 0;
+                    margin-top: 200px;
+                }
             >div {
                 max-width: 30%;
-                margin: 200px auto 200px auto;
-
+                margin: 40px auto 200px auto;
+                
                 .painting {
                     display: block;
                     position: relative;
                     max-width: 100%;
                     padding: 0;
-                    @include box-shadow(4px, 4px, 20px, 0px, $darkshadow);
+                    @include box-shadow(4px, 4px, 20px, 0px, $mediumshadow);
                     transition: 0.5s ease;
                     &:hover {
-                        @include box-shadow(4px, 4px, 30px, 0px, $darkshadow);
+                        @include box-shadow(4px, 4px, 30px, 0px, $mediumshadow);
                         filter: grayscale(0);
                         transform: scale(1.05,1.05);
                     }
