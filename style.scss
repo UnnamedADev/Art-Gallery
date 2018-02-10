@@ -122,6 +122,7 @@ button {
 /* html */
 html, body {
     height: 100%;
+    overflow: hidden;
 }
 /* page */
 body {
@@ -158,8 +159,17 @@ body {
             border: solid $notfair;
             transition: 0.4s ease;
             
+            &::before {
+                color: $verynotfair;
+                margin-left: 5px;
+                font-variant: small-caps;
+                font-family: Lato;
+                font-size: 1em;
+                text-transform: uppercase;
+                overflow: visible;
+            }
             &:hover {
-                background: $verynotfair;
+                background: $fair;
                 border-color: $notfair;
             }
         }
@@ -170,6 +180,11 @@ body {
             .icon {
                 transform: rotate(-45deg);
                 border-width: 10px 0px 0px 10px;
+                &:hover {
+                    &::before {
+                        content: "Previous";
+                    }
+                }
             }
         }
         >div:nth-of-type(2) {
@@ -190,12 +205,14 @@ body {
                 
                 &:hover {
                     filter: grayscale(0);
-                    transform: translate(-50%, -50%) scale(1.2,1.2);
+                    transform: translate(-50%, -50%) scale(1.1,1.1);
                     @include box-shadow(4px, 4px, 40px, 5px, $darkshadow);
                 }
             }
             .activePainting {
                 display: block;
+                margin-left: 0;
+                margin-right: 0;
             }
         }
         >div:nth-of-type(3) {
@@ -204,6 +221,11 @@ body {
             .icon {
                 transform: rotate(45deg);
                 border-width: 10px 10px 0px 0px;
+                &:hover {
+                    &::before {
+                        content: "Next";
+                    }
+                }
             }
         }
     }

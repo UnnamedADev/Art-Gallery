@@ -4,11 +4,14 @@ $(document).ready(function(){
     
     //const
     const iconDuration = 500;
+    const pntEffectDuration = 400;
+    const pntAnimationDuration = 500;
     //vars
     
     //main
     iconEvent();
     paintingEvent();
+    navEvent();
     
     //FUNCTIONS
     // # Add icon "next" and "previous" buttons animation events
@@ -55,6 +58,71 @@ $(document).ready(function(){
         
         $(".activePainting").click(function(){
             console.log("block it");
+        });
+    }
+    // # Navigation buttons events
+    function navEvent(){
+        $(".icon").each(function(){
+            $(this).click(function(){
+                
+                switch($(this).attr("mvDirection")){
+                    // # Left side
+                    case "left":
+                        
+                        var previousOne = $(".activePainting").prev();
+                        
+                        if(previousOne[0] == undefined){
+                            break;
+                        }
+                        
+                        $(".activePainting").animate({
+                            marginLeft: "1000%"
+                        },pntAnimationDuration,"swing", function(){
+                            $(".activePainting").removeClass("activePainting");
+                            
+                            $(previousOne).css("display", "block");
+                            $(previousOne).css("margin-left", "-1000%")
+                            $(previousOne).animate({
+                                marginLeft: 0
+                            },pntAnimationDuration,"swing",function(){
+                                $(previousOne).addClass("activePainting");
+                                paintingEvent();
+                            });
+                        });
+                        
+                        break;
+                    // # Right side
+                    case "right":
+                        
+                        var nextOne = $(".activePainting").next();
+                        
+                        if(nextOne[0] == undefined){
+                            break;
+                        }
+                        
+                        $(".activePainting").animate({
+                            marginLeft: "-1000%"
+                        },pntAnimationDuration,"swing", function(){
+                            $(".activePainting").removeClass("activePainting");
+                            
+                            $(nextOne).css("display", "block");
+                            $(nextOne).css("margin-left", "1000%")
+                            $(nextOne).animate({
+                                marginLeft: 0
+                            },pntAnimationDuration,"swing",function(){
+                                $(nextOne).addClass("activePainting");
+                                paintingEvent();
+                            });
+                        });
+                        
+                        break;
+                    // # Default
+                    default:
+                        console.log("xd");
+                }
+                
+                
+            });
         });
     }
     //IMPORTANT FX
