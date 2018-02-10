@@ -5,7 +5,7 @@ $(document).ready(function(){
     //const
     const iconDuration = 500;
     const pntEffectDuration = 400;
-    const pntAnimationDuration = 500;
+    const pntAnimationDuration = 100;
     //vars
     
     //main
@@ -18,13 +18,14 @@ $(document).ready(function(){
     function iconEvent(){
         
         var actlRt = undefined;
-        var isTaken = false; 
         
         $(".icon").mouseenter(function(){
-            
-            if(returnRotation($(this))!=0 && isTaken == false){
-                actlRt = returnRotation($(this));
+            if($(this).is(":animated")==false){
+                if(returnRotation($(this))!=0){
+                    actlRt = returnRotation($(this));
+                }
             }
+
             
             $(this).animate({ borderSpacing:-90}, {
                 step: function(now,fx) {
@@ -36,24 +37,28 @@ $(document).ready(function(){
         });
         
         $(".icon").mouseleave(function(){
-            isTaken = true;
             $(this).animate({ borderSpacing:-90}, {
                 step: function(now,fx) {
                   $(this).css('-webkit-transform','rotate('+actlRt+'deg)');
                 },
                 duration: iconDuration
-            },"swing");
+            },"swing",);
         });
     }
     // # Painting autoplay event, when mouse is over it
     function paintingEvent(){
         
         $(".activePainting").mouseenter(function(){
+            if($(this).attr("src") != $(".fixedVideo").attr("src")){
+                $(".fixedVideo").attr("src",$(this).attr("src"));
+            }
             $(this).trigger("play");
+            $(".fixedVideo").fadeIn(0).trigger("play");
         });
         
         $(".activePainting").mouseleave(function(){
             $(this).trigger("pause");
+            $(".fixedVideo").fadeOut(0).trigger("pause");
         });
         
         $(".activePainting").click(function(){
@@ -76,12 +81,12 @@ $(document).ready(function(){
                         }
                         
                         $(".activePainting").animate({
-                            marginLeft: "1000%"
+                            marginLeft: "200%"
                         },pntAnimationDuration,"swing", function(){
                             $(".activePainting").removeClass("activePainting");
                             
                             $(previousOne).css("display", "block");
-                            $(previousOne).css("margin-left", "-1000%")
+                            $(previousOne).css("margin-left", "-200%")
                             $(previousOne).animate({
                                 marginLeft: 0
                             },pntAnimationDuration,"swing",function(){

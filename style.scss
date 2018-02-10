@@ -78,47 +78,7 @@ button {
 * {
     box-sizing: border-box;
 }
-/* preloader */
-.preloader {
-    top: 0;
-    width: 100%;
-    height: 100%;
-    position: fixed;
-    z-index: 10000;
-}
-/* preview */
-.preview {
-    top: -100%;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    position: fixed;
-    z-index: 10000;
-    text-align: center;
-    background: $fair;
-    vertical-align: bottom;
-    
-    div {
-        width: 100%;
-        height: 100%;
-        position: relative;
-        resize: vertical;
-        
-        img {
-            z-index: 11000;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            resize: vertical;
-            display: none;
-            max-height: 98%;
-            max-width: 98%;
-            @include box-shadow(4px, 4px, 20px, 0px, $darkshadow);
-        }
-    }
-    
-}
+
 /* html */
 html, body {
     height: 100%;
@@ -128,6 +88,18 @@ html, body {
 body {
     font-family: Lato;
     
+    .fixedVideo {
+        z-index: -10;
+        filter: blur(10px);
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        min-width: 104%;
+        min-height: 104%;
+        display: block;
+    }
+    
     >header, >section {
         float: left;
         width: 100%;
@@ -136,11 +108,9 @@ body {
     header {
         height: 20%;
         text-align: center;
-        background: $fair;
     }
     section {
         height: 80%;
-        background: $fair;
         
         >div {
             float: left;
