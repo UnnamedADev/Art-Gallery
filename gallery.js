@@ -18,7 +18,7 @@ $(document).ready(function(){
     function iconEvent(){
         
         var actlRt = undefined;
-        
+        // # enter
         $(".icon").mouseenter(function(){
             if($(this).is(":animated")==false){
                 if(returnRotation($(this))!=0){
@@ -26,16 +26,18 @@ $(document).ready(function(){
                 }
             }
 
-            
+
             $(this).animate({ borderSpacing:-90}, {
                 step: function(now,fx) {
                   $(this).css('-webkit-transform','rotate(0deg)');
                 },
                 duration: iconDuration
-            },"swing");
+            },"swing",function(){
+                $(this+":before").fadeIn(0);
+            });
             
         });
-        
+        // # leave
         $(".icon").mouseleave(function(){
             $(this).animate({ borderSpacing:-90}, {
                 step: function(now,fx) {
@@ -47,20 +49,35 @@ $(document).ready(function(){
     }
     // # Painting autoplay event, when mouse is over it
     function paintingEvent(){
-        
+        // # enter
         $(".activePainting").mouseenter(function(){
             if($(this).attr("src") != $(".fixedVideo").attr("src")){
                 $(".fixedVideo").attr("src",$(this).attr("src"));
+                $(".fixedAudio").attr("src",$(this).attr("track-src"));
             }
             $(this).trigger("play");
             $(".fixedVideo").fadeIn(0).trigger("play");
+            $(".fixedAudio").trigger("play");
+            $("header *").fadeOut(0);
+            
+            $(".icon").each(function(){
+                $(this).css("border-color","#fff")
+            });
         });
         
+        // # leave
         $(".activePainting").mouseleave(function(){
             $(this).trigger("pause");
             $(".fixedVideo").fadeOut(0).trigger("pause");
+            $(".fixedAudio").trigger("pause");
+            $("header *").fadeIn(0);
+            
+            $(".icon").each(function(){
+                $(this).css("border-color","")
+            });
         });
         
+        // # click
         $(".activePainting").click(function(){
             console.log("block it");
         });

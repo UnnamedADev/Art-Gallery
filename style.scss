@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Lato');
 
 /* variables */
+$dark: #222222;
 $verynotfair: #cccccc;
 $notfair: #eeeeee;
 $fair: #f9f9f9;
@@ -33,12 +34,12 @@ $mediumshadow: #888;
 %title {
     text-transform: uppercase;
     font-variant: small-caps;
-    color: $verynotfair;
+    color: $dark;
 }
 %subtitle {
     text-transform: lowercase;
     font-variant: small-caps;
-    color: $verynotfair;
+    color: $dark;
 }
 
 /* native */
@@ -106,11 +107,11 @@ body {
     }
     
     header {
-        height: 20%;
+        height: 15%;
         text-align: center;
     }
     section {
-        height: 80%;
+        height: 85%;
         
         >div {
             float: left;
@@ -126,20 +127,21 @@ body {
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            border: solid $notfair;
+            border: solid $dark;
             transition: 0.4s ease;
             
             &::before {
-                color: $verynotfair;
+                color: $dark;
                 margin-left: 5px;
                 font-variant: small-caps;
                 font-family: Lato;
                 font-size: 1em;
                 text-transform: uppercase;
                 overflow: visible;
+                transition: 0.4s ease;
+                font-weight: bold;
             }
             &:hover {
-                background: $fair;
                 border-color: $notfair;
             }
         }
@@ -172,10 +174,10 @@ body {
                 display: none;
                 filter: grayscale(1);
                 transition: 0.4s ease;
-                
                 &:hover {
                     filter: grayscale(0);
                     transform: translate(-50%, -50%) scale(1.1,1.1);
+                    
                     @include box-shadow(4px, 4px, 40px, 5px, $darkshadow);
                 }
             }

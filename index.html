@@ -2,7 +2,7 @@
 <html lang="pl">
 <head>
     <meta charset="UTF-8">
-    <title>v0.1.4 - Art Gallery</title>
+    <title>v0.1.5 - Art Gallery</title>
     <link rel="stylesheet" href="style.css">
     <script src="jquery-3.2.1.min.js"></script>
     <script src="gallery.js"></script>
@@ -11,7 +11,7 @@
    <!-- fixed video -->
    
     <video class="fixedVideo" loop muted></video>
-
+    <audio class="fixedAudio" src="gallery/sound/bosski.mp3"></audio>
     
     <!-- content -->
     <header>
@@ -23,8 +23,24 @@
             <div class="icon" mvDirection="left"></div>
         </div>
         <div>
-            <video src="gallery/video1.mp4" class="painting activePainting" loop></video>
-            <video src="gallery/video2.mp4" class="painting" loop></video>
+            <video 
+            track-src="gallery/sound/bosski.mp3"   
+            src="gallery/vid/video1.mp4" class="painting activePainting" 
+            loop muted>
+            </video>
+            
+            <video 
+            track-src="gallery/sound/usher-yeah.mp3"   
+            src="gallery/vid/video3.mp4" class="painting" 
+            loop muted>
+            </video>
+            
+            <video 
+            track-src="gallery/sound/eazy-e.mp3"   
+            src="gallery/vid/video4.mp4" class="painting" 
+            loop muted>
+            </video>
+
         </div>
         <div>
             <div class="icon" mvDirection="right"></div>
