@@ -3,59 +3,73 @@
 $(document).ready(function(){
     
     //const
-    const anmDuration = 400;
-    const plsDuration = 1000;
-    const scrllDuration = 1000;
+    const iconDuration = 500;
     //vars
     
     //main
-    paintingsEvents();
-    closeEvent();
-    scrollTopEvent();
+    iconEvent();
+    paintingEvent();
     
-    //functions
-    function paintingsEvents(){
-        $(".painting").each(function(){
+    //FUNCTIONS
+    // # Add icon "next" and "previous" buttons animation events
+    function iconEvent(){
+        
+        var actlRt = undefined;
+        var isTaken = false; 
+        
+        $(".icon").mouseenter(function(){
             
-            $(this).click(function(){
-                
-                var myHref = $(this).attr("src");
-                
-                $(".preview img").attr("src", myHref);
-                
-                $(".preview").animate({
-                    top: 0
-                },anmDuration,"swing",function(){
-                    console.log("xd");
-                    $(".preview img").fadeIn(anmDuration/2);
-                });
-            });
-
-        });
-    }
-    
-    function closeEvent(){
-        $(".preview").click(function(){
-            
-            var myPic = $(".preview img")[0];
-            var trgt = $(event.target)[0];
-            
-            if(myPic != trgt){
-                $(".preview img").fadeOut(anmDuration/2, function(){
-                    $(".preview").animate({
-                        top: "-100%"
-                    },anmDuration,"swing");
-                });
+            if(returnRotation($(this))!=0 && isTaken == false){
+                actlRt = returnRotation($(this));
             }
             
+            $(this).animate({ borderSpacing:-90}, {
+                step: function(now,fx) {
+                  $(this).css('-webkit-transform','rotate(0deg)');
+                },
+                duration: iconDuration
+            },"swing");
+            
+        });
+        
+        $(".icon").mouseleave(function(){
+            isTaken = true;
+            $(this).animate({ borderSpacing:-90}, {
+                step: function(now,fx) {
+                  $(this).css('-webkit-transform','rotate('+actlRt+'deg)');
+                },
+                duration: iconDuration
+            },"swing");
         });
     }
-    
-    function scrollTopEvent(){
-        $(".scrollBack").click(function(){
-            $("html").animate({
-                scrollTop: 0
-            },scrllDuration,"swing");
+    // # Painting autoplay event, when mouse is over it
+    function paintingEvent(){
+        
+        $(".activePainting").mouseenter(function(){
+            $(this).trigger("play");
         });
+        
+        $(".activePainting").mouseleave(function(){
+            $(this).trigger("pause");
+        });
+        
+        $(".activePainting").click(function(){
+            console.log("block it");
+        });
+    }
+    //IMPORTANT FX
+    // # Return a angle of actual transform rotation
+    function returnRotation(obj){
+            var actTrf = $(obj).css("transform");
+            
+            var matrixValues = actTrf.split("(")[1].split(")")[0].split(",");
+            
+            var scale = Math.sqrt(Math.sqrt(matrixValues[0])+Math.sqrt(matrixValues[1]));
+            
+            var sin = matrixValues[1]/scale;
+            
+            var angle = Math.round(Math.atan2(matrixValues[1], matrixValues[0]) * (180/Math.PI));
+            
+            return angle;
     }
 });

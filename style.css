@@ -10,7 +10,7 @@ h1, button {
 h2 {
   text-transform: lowercase;
   font-variant: small-caps;
-  color: #d9d9d9; }
+  color: #cccccc; }
 
 /* native */
 html, body, ul, ol {
@@ -31,7 +31,7 @@ button {
   transition: 0.3s ease; }
   button:hover {
     background: #cccccc;
-    color: #ffffff; }
+    color: #cccccc; }
   button:focus {
     outline: none; }
 
@@ -76,61 +76,71 @@ button {
       -moz-box-shadow: 4px 4px 20px 0px #000;
       box-shadow: 4px 4px 20px 0px #000; }
 
+/* html */
+html, body {
+  height: 100%; }
+
 /* page */
 body {
-  background: #ffffff;
-  font-family: Lato;
-  color: #cccccc;
-  text-transform: lowercase;
-  font-variant: small-caps;
-  letter-spacing: 0.1em; }
-  body header, body section, body footer {
+  font-family: Lato; }
+  body > header, body > section {
     float: left;
-    width: 100%;
-    border-bottom: 2px solid #f9f9f9; }
+    width: 100%; }
   body header {
-    padding: 40px;
-    text-align: center; }
-    body header h1 {
-      font-size: 3em; }
-    body header h2 {
-      font-size: 2em; }
-    body header h1, body header h2 {
-      animation: titlePulse infinite 2s alternate; }
-@keyframes titlePulse {
-  from {
-    opacity: 1; }
-  to {
-    opacity: 0.4; } }
+    height: 20%;
+    text-align: center;
+    background: #f9f9f9; }
   body section {
-    padding: 40px auto; }
-    body section .tile h1 {
-      text-align: center;
-      background: #eeeeee;
-      color: #ffffff;
-      width: 100%;
-      padding: 10px 0;
-      margin-top: 200px; }
-    body section .tile > div {
-      max-width: 30%;
-      margin: 40px auto 200px auto; }
-      body section .tile > div .painting {
-        display: block;
-        position: relative;
-        max-width: 100%;
-        padding: 0;
-        -webkit-box-shadow: 4px 4px 20px 0px #888;
-        -moz-box-shadow: 4px 4px 20px 0px #888;
-        box-shadow: 4px 4px 20px 0px #888;
-        transition: 0.5s ease; }
-        body section .tile > div .painting:hover {
-          -webkit-box-shadow: 4px 4px 30px 0px #888;
-          -moz-box-shadow: 4px 4px 30px 0px #888;
-          box-shadow: 4px 4px 30px 0px #888;
+    height: 80%;
+    background: #f9f9f9; }
+    body section > div {
+      float: left;
+      height: 100%;
+      position: relative; }
+    body section .icon {
+      width: 60px;
+      height: 60px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      border: solid #eeeeee;
+      transition: 0.4s ease; }
+      body section .icon:hover {
+        background: #cccccc;
+        border-color: #eeeeee; }
+    body section > div:nth-of-type(1) {
+      width: 10%; }
+      body section > div:nth-of-type(1) .icon {
+        transform: rotate(-45deg);
+        border-width: 10px 0px 0px 10px; }
+    body section > div:nth-of-type(2) {
+      width: 80%; }
+      body section > div:nth-of-type(2) > .painting {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        padding: 0px;
+        max-height: 50%;
+        -webkit-box-shadow: 4px 4px 20px 0px #000;
+        -moz-box-shadow: 4px 4px 20px 0px #000;
+        box-shadow: 4px 4px 20px 0px #000;
+        display: none;
+        filter: grayscale(1);
+        transition: 0.4s ease; }
+        body section > div:nth-of-type(2) > .painting:hover {
           filter: grayscale(0);
-          transform: scale(1.05, 1.05); }
-  body footer {
-    padding: 40px;
-    text-align: center; }
+          transform: translate(-50%, -50%) scale(1.2, 1.2);
+          -webkit-box-shadow: 4px 4px 40px 5px #000;
+          -moz-box-shadow: 4px 4px 40px 5px #000;
+          box-shadow: 4px 4px 40px 5px #000; }
+      body section > div:nth-of-type(2) .activePainting {
+        display: block; }
+    body section > div:nth-of-type(3) {
+      width: 10%; }
+      body section > div:nth-of-type(3) .icon {
+        transform: rotate(45deg);
+        border-width: 10px 10px 0px 0px; }
 
 /*# sourceMappingURL=style.css.map */

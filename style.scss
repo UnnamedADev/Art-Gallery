@@ -1,13 +1,10 @@
 @import url('https://fonts.googleapis.com/css?family=Lato');
 
 /* variables */
+$verynotfair: #cccccc;
 $notfair: #eeeeee;
 $fair: #f9f9f9;
 $veryfair: #ffffff;
-
-$fairtext: #cccccc;
-$veryfairtext: #d9d9d9;
-$extrafairtext: #ffffff;
 
 $darkshadow: #000;
 $mediumshadow: #888;
@@ -36,12 +33,12 @@ $mediumshadow: #888;
 %title {
     text-transform: uppercase;
     font-variant: small-caps;
-    color: $fairtext;
+    color: $verynotfair;
 }
 %subtitle {
     text-transform: lowercase;
     font-variant: small-caps;
-    color: $veryfairtext;
+    color: $verynotfair;
 }
 
 /* native */
@@ -65,14 +62,14 @@ h2 {
 button {
     @extend %title;
     background: none;
-    border: 2px solid $fairtext;
+    border: 2px solid $verynotfair;
     font-weight: bolder;
     padding: 5px 30px;
     font-size: 1.5em;
     transition: 0.3s ease;
     &:hover {
-        background: $fairtext;
-        color: $veryfair;
+        background: $verynotfair;
+        color: $verynotfair;
     }
     &:focus {
         outline: none;
@@ -122,82 +119,93 @@ button {
     }
     
 }
+/* html */
+html, body {
+    height: 100%;
+}
 /* page */
 body {
-    
-    background: $veryfair;
     font-family: Lato;
-    color: $fairtext;
-    text-transform: lowercase;
-    font-variant: small-caps;
-    letter-spacing: 0.1em;
     
-    header, section, footer {
+    >header, >section {
         float: left;
         width: 100%;
-        border-bottom: 2px solid $fair;    
-        
     }
     
     header {
-        padding: 40px;
+        height: 20%;
         text-align: center;
-        
-        h1 {
-            font-size: 3em;
-        }
-        h2 {
-            font-size: 2em;
-        }
-        h1, h2{
-            animation: titlePulse infinite 2s alternate;
-        }
-        @keyframes titlePulse {
-            from {
-                opacity: 1;
-            }
-            to {
-                opacity: 0.4
-            }
-        }
+        background: $fair;
     }
-    
     section {
-        padding: 40px auto;
+        height: 80%;
+        background: $fair;
         
-        .tile {
-            h1 {
-                    text-align: center;
-                    background: $notfair;
-                    color: $extrafairtext;
-                    width: 100%;
-                    padding: 10px 0;
-                    margin-top: 200px;
-                }
-            >div {
-                max-width: 30%;
-                margin: 40px auto 200px auto;
+        >div {
+            float: left;
+            height: 100%;
+            position: relative;
+        }
+        
+        .icon {
+            width: 60px;
+            height: 60px;
                 
-                .painting {
-                    display: block;
-                    position: relative;
-                    max-width: 100%;
-                    padding: 0;
-                    @include box-shadow(4px, 4px, 20px, 0px, $mediumshadow);
-                    transition: 0.5s ease;
-                    &:hover {
-                        @include box-shadow(4px, 4px, 30px, 0px, $mediumshadow);
-                        filter: grayscale(0);
-                        transform: scale(1.05,1.05);
-                    }
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border: solid $notfair;
+            transition: 0.4s ease;
+            
+            &:hover {
+                background: $verynotfair;
+                border-color: $notfair;
+            }
+        }
+        
+        >div:nth-of-type(1) {
+            width: 10%;
+            
+            .icon {
+                transform: rotate(-45deg);
+                border-width: 10px 0px 0px 10px;
+            }
+        }
+        >div:nth-of-type(2) {
+            width: 80%;
+            
+            >.painting {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                padding: 0px;
+                
+                max-height: 50%;
+                @include box-shadow(4px, 4px, 20px, 0px, $darkshadow);
+                display: none;
+                filter: grayscale(1);
+                transition: 0.4s ease;
+                
+                &:hover {
+                    filter: grayscale(0);
+                    transform: translate(-50%, -50%) scale(1.2,1.2);
+                    @include box-shadow(4px, 4px, 40px, 5px, $darkshadow);
                 }
-
+            }
+            .activePainting {
+                display: block;
+            }
+        }
+        >div:nth-of-type(3) {
+            width: 10%;
+            
+            .icon {
+                transform: rotate(45deg);
+                border-width: 10px 10px 0px 0px;
             }
         }
     }
     
-    footer {
-        padding: 40px;
-        text-align: center;
-    }
 }
